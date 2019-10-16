@@ -2,6 +2,14 @@ LOCAL_PATH:= $(call my-dir)
 
 ifneq (,$(wildcard frameworks/av/media/libmediaplayerservice/Android.mk))
 MINIAF_32 := $(shell cat frameworks/av/media/mediaserver/Android.mk |grep "LOCAL_32_BIT_ONLY[[:space:]]*:=[[:space:]]*" |grep -o "true\|1\|false\|0")
+else
+ifneq (,$(wildcard frameworks/av/media/mediaserver/Android.bp))
+ifneq (,$(shell cat frameworks/av/media/mediaserver/Android.bp |grep "compile_multilib:[[:space:]]*\".*32\""))
+    MINIAF_32 := true
+else
+    MINIAF_32 := false
+endif
+endif
 endif
 
 ANDROID_MAJOR :=
