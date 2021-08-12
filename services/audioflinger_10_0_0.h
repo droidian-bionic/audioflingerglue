@@ -323,6 +323,10 @@ public:
         return NO_ERROR;
     }
 
+    virtual status_t setAudioHalPids(const std::vector<pid_t>& pids) {
+        return NO_ERROR;
+    }
+
     virtual status_t onTransact(uint32_t code,
                                 const Parcel& data,
                                 Parcel* reply,
